@@ -10,8 +10,8 @@ public class DataHelper {
 
     }
 
-    public static Weather getWeather(Context context) {
-        Data data = JsonHelper.fromRawDirectoryJsonFile(context, "data", Data.class);
+    public static Weather getWeather(Context context, String fileName) {
+        Data data = JsonHelper.fromRawDirectoryJsonFile(context, fileName, Data.class);
         return data.content;
     }
 }
