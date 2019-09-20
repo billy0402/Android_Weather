@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="date">選擇日期</string>
+    <string name="region">選擇區域</string>
+    <string name="weather">天氣現象:</string>
+    <string name="max_temperature">最高溫度:</string>
+    <string name="min_temperature">最低溫度:</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
 </resources>
