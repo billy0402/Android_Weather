@@ -42,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         LineChart lineChart = findViewById(R.id.main_chart);
+        lineChart.getDescription().setEnabled(false);
         lineChart.setDragEnabled(true);
+        lineChart.setScaleEnabled(false);
         lineChart.setDrawGridBackground(true);
         lineChart.setDrawBorders(true);
         lineChart.setTouchEnabled(true);
@@ -58,29 +60,28 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "NothingSelected");
             }
         });
+        lineChart.setExtraTopOffset(30);
+        lineChart.setExtraBottomOffset(20);
 
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextSize(14);
-        xAxis.setAvoidFirstLastClipping(true);
-        xAxis.setGridColor(Color.BLACK);
-        xAxis.setGridLineWidth(2);
+//        xAxis.setAvoidFirstLastClipping(true);
+        xAxis.setDrawGridLines(false);
 
         YAxis leftY = lineChart.getAxisLeft();
         leftY.setTextSize(14);
-        leftY.setGridColor(Color.BLACK);
-        leftY.setGridLineWidth(2);
+        leftY.setGridColor(Color.GRAY);
         YAxis rightY = lineChart.getAxisRight();
         rightY.setTextSize(14);
-        rightY.setGridColor(Color.BLACK);
-        rightY.setGridLineWidth(2);
+        rightY.setGridColor(Color.GRAY);
 
         Legend legend = lineChart.getLegend();
         legend.setForm(Legend.LegendForm.LINE);
         legend.setTextSize(18);
         legend.setFormLineWidth(10);
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
 
@@ -88,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
         DataSet weatherDataSet = weather.dataSet;
         DataSetInfo dataSetInfo = weatherDataSet.dataSetInfo;
         String title = dataSetInfo.description;
-        Description description = lineChart.getDescription();
-        description.setText(title);
+//        Description description = lineChart.getDescription();
+//        description.setText(title);
         List<Location> locations = weatherDataSet.locations;
 //        for (Location location : locations) {
         Map<String, List<Entry>> entriesMap = new HashMap<>();
@@ -118,25 +119,41 @@ public class MainActivity extends AppCompatActivity {
         maxTemperatureDataSet.setCircleColor(Color.RED);
         maxTemperatureDataSet.setDrawCircleHole(false);
         maxTemperatureDataSet.setLineWidth(2);
-        maxTemperatureDataSet.setValueTextSize(14);
+        maxTemperatureDataSet.setValueTextSize(16);
+        maxTemperatureDataSet.setValueTextColor(Color.RED);
+        maxTemperatureDataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int) value);
+            }
+        });
         LineDataSet minTemperatureDataSet = new LineDataSet(entriesMap.get("MinT"), "最低溫");
         minTemperatureDataSet.setColor(Color.BLUE);
         minTemperatureDataSet.setCircleColor(Color.BLUE);
         minTemperatureDataSet.setDrawCircleHole(false);
         minTemperatureDataSet.setLineWidth(2);
-        minTemperatureDataSet.setValueTextSize(14);
+        minTemperatureDataSet.setValueTextSize(16);
+        minTemperatureDataSet.setValueTextColor(Color.BLUE);
+        minTemperatureDataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int) value);
+            }
+        });
         LineData lineData = new LineData(maxTemperatureDataSet, minTemperatureDataSet);
         lineChart.setData(lineData);
 //        xAxis.setLabelCount(5, true);
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-//                int index = (int) value;
-//                return xIndexList.get(index);
-                return String.valueOf(value);
+                Log.d(TAG, String.valueOf(value));
+                int index = (int) value;
+                return index < 15 ? xIndexList.get(index): String.valueOf(value);
+//                return String.valueOf(value);
             }
         });
-        lineChart.setVisibleXRangeMaximum(4);
+        xAxis.setLabelCount(2, false);
+        lineChart.setVisibleXRangeMaximum(2);
     }
 //    }
 }
