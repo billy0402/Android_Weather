@@ -115,12 +115,12 @@ public class MainActivity extends AppCompatActivity {
             entriesMap.put(weatherElement.name, entries);
         }
         LineDataSet maxTemperatureDataSet = new LineDataSet(entriesMap.get("MaxT"), "最高溫");
-        maxTemperatureDataSet.setColor(Color.RED);
-        maxTemperatureDataSet.setCircleColor(Color.RED);
+        maxTemperatureDataSet.setColor(Color.rgb(245, 177, 176));
+        maxTemperatureDataSet.setCircleColor(Color.rgb(245, 177, 176));
         maxTemperatureDataSet.setDrawCircleHole(false);
         maxTemperatureDataSet.setLineWidth(2);
         maxTemperatureDataSet.setValueTextSize(16);
-        maxTemperatureDataSet.setValueTextColor(Color.RED);
+        maxTemperatureDataSet.setValueTextColor(Color.rgb(245, 177, 176));
         maxTemperatureDataSet.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
@@ -128,12 +128,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         LineDataSet minTemperatureDataSet = new LineDataSet(entriesMap.get("MinT"), "最低溫");
-        minTemperatureDataSet.setColor(Color.BLUE);
-        minTemperatureDataSet.setCircleColor(Color.BLUE);
+        minTemperatureDataSet.setColor(Color.rgb(132, 170, 208));
+        minTemperatureDataSet.setCircleColor(Color.rgb(132, 170, 208));
         minTemperatureDataSet.setDrawCircleHole(false);
         minTemperatureDataSet.setLineWidth(2);
         minTemperatureDataSet.setValueTextSize(16);
-        minTemperatureDataSet.setValueTextColor(Color.BLUE);
+        minTemperatureDataSet.setValueTextColor(Color.rgb(132, 170, 208));
         minTemperatureDataSet.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
