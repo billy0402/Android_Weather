@@ -13,16 +13,25 @@ public class Parameter {
     private String name;
     @SerializedName(value = "parameterValue", alternate = {"parameterUnit"})
     private String value;
+    private String elementName;
 
     public Temperature convertToTemperature() {
         return TemperatureHelper.get(value, Float.valueOf(value));
     }
 
-    public String getName(String elementName) {
+    public String getName() {
         return elementName.equalsIgnoreCase("Wx") ? name : value;
     }
 
-    public String getValue(String elementName) {
+    public String getValue() {
         return elementName.equalsIgnoreCase("Wx") ? value : name;
+    }
+
+    public String getElementName() {
+        return elementName;
+    }
+
+    public void setElementName(String elementName) {
+        this.elementName = elementName;
     }
 }
