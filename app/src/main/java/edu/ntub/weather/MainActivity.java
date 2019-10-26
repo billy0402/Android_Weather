@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         });
         LineData lineData = new LineData(maxTemperatureDataSet, minTemperatureDataSet);
         lineChart.setData(lineData);
+        XAxis xAxis = lineChart.getXAxis();
 //        xAxis.setLabelCount(5, true);
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
