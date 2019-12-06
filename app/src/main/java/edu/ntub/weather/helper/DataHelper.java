@@ -2,6 +2,8 @@ package edu.ntub.weather.helper;
 
 import android.content.Context;
 
+import java.io.InputStream;
+
 import edu.ntub.weather.dto.Data;
 import edu.ntub.weather.dto.Weather;
 
@@ -11,7 +13,8 @@ public class DataHelper {
     }
 
     public static Weather getWeather(Context context, String fileName) {
-        Data data = JsonHelper.fromRawDirectoryJsonFile(context, fileName, Data.class);
+        InputStream inputStream = ResourceHelper.getRawFileInputStream(context, fileName);
+        Data data = JsonHelper.fromJsonFile(inputStream, Data.class);
         return data.content;
     }
 }
