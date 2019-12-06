@@ -115,7 +115,9 @@ public class MainActivity extends AppCompatActivity implements MainRecyclerViewA
 
     @Override
     public void onLocationClick(View view, int position) {
-
+        Intent intent = new Intent(MainActivity.this, WeatherDetailActivity.class);
+        intent.putExtra("locationIndex", position);
+        startActivity(intent);
     }
 }
 
